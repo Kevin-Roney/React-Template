@@ -1,7 +1,8 @@
 .Header {
   position: sticky;
   top: 0;
-  background: #f9dc5c;
+  background: var(--header-color);
+  color: var(--font-color);
 
   height: 30px;
 

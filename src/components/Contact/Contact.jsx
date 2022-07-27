@@ -7,6 +7,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
 import { useTheme } from '@mui/material/styles';
 import { useState } from 'react';
 
@@ -46,20 +47,18 @@ export default function Contact() {
         : theme.typography.fontWeightMedium,
     };
   }
-  function handleChange(event) {
-    const {
-      target: { value },
-    } = event;
-    inquiryForm.tags.push(
-      // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
-    );
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(inquiryForm);
+    //some more stuff to go here when its built out
   }
 
   return <div className={styles.Home}>
     <h1>Contact Us</h1>
     <Box
       component="form"
+      className={styles.form}
+      onSubmit={handleSubmit}
       sx={{
         '& > :not(style)': { m: 1, width: '25ch' },
       }}
@@ -107,7 +106,11 @@ export default function Contact() {
           id="demo-multiple-chip"
           multiple
           value={inquiryForm.tags}
-          onChange={handleChange}
+          onChange={
+            (e) => setInquiryForm(
+              { ...inquiryForm, tags: e.target.value }
+            )
+          }
           input={<OutlinedInput id="select-multiple-chip" label="tags" />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
@@ -129,6 +132,7 @@ export default function Contact() {
           ))}
         </Select>
       </FormControl>
+      <Button type="submit">Submit</Button>
     </Box>
   </div>  ;
 }

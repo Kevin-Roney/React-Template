@@ -3,14 +3,14 @@
   flex-direction: column;
   gap: 10px;
   align-items: flex-start;
-
+  height: 100vh;
   @media (min-width: 750px) {
+    height: auto;
     flex-direction: row;
   }
 
   a {
     padding: 3px 7px;
-    color: initial;
     text-decoration: none;
     text-transform: uppercase;
     font-size: 0.8em;
@@ -19,7 +19,7 @@
     align-items: flex-start;
   }
   :hover {
-    background-color: #F68E5F;
+    background-color: var(--hover-color);
     transition: 1s ease-in-out;
   }
 }
