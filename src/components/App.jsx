@@ -8,7 +8,7 @@ import Layout from './Page/Layout.jsx';
 import Home from './Home/Home.jsx';
 import Contact from './Contact/Contact.jsx';
 import About from './About/About.jsx';
-import PokemonAPI from './PokemonAPI/PokemonAPI.jsx';
+import PokemonAPI from './Pokedex/PokemonAPI.jsx';
 
 export default function App() {
   return (
