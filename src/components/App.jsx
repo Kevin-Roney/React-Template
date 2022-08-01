@@ -19,6 +19,7 @@ export default function App() {
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />
           <Route path="pokemonapiagainforsomereason" element={<PokemonAPI />} />
+          <Route path="fuzzybunnies" element={<FuzzyBunny />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
