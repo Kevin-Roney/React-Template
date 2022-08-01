@@ -11,7 +11,9 @@ import Contact from './Contact/Contact.jsx';
 import About from './About/About.jsx';
 import PokemonAPI from './Pokedex/PokemonAPI.jsx';
 import FuzzyBunny from './FuzzyBunny/FuzzyBunny.jsx';
-import FuzzyBunnyProvider from './state/context/fuzzybunnycontext.jsx';
+import FuzzyBunnyProvider from '../state/context/FuzzyBunnyContext.jsx';
+import Families from './FuzzyBunny/Families.jsx';
+import Bunnies from './FuzzyBunny/Bunnies.jsx';
 import { Toaster } from 'react-hot-toast';
 
 export default function App() {
