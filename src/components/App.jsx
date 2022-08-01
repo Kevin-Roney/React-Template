@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import {
   BrowserRouter as Router,
   Routes,
@@ -9,20 +10,29 @@ import Home from './Home/Home.jsx';
 import Contact from './Contact/Contact.jsx';
 import About from './About/About.jsx';
 import PokemonAPI from './Pokedex/PokemonAPI.jsx';
+import FuzzyBunny from './FuzzyBunny/FuzzyBunny.jsx';
+import FuzzyBunnyProvider from './state/context/fuzzybunnycontext.jsx';
+import { Toaster } from 'react-hot-toast';
 
 export default function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="contact" element={<Contact />} />
-          <Route path="about" element={<About />} />
-          <Route path="pokemonapiagainforsomereason" element={<PokemonAPI />} />
-          <Route path="fuzzybunnies" element={<FuzzyBunny />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
+      <Toaster />
+      <FuzzyBunnyProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="contact" element={<Contact />} />
+            <Route path="about" element={<About />} />
+            <Route path="pokemonapiagainforsomereason" element={<PokemonAPI />} />
+            <Route path="fuzzybunnies" element={<FuzzyBunny />}>
+              <Route index element={<Families />} />
+              <Route path="bunnies" element={<Bunnies />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </FuzzyBunnyProvider>
     </Router>
   );
 }
