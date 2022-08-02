@@ -24,6 +24,7 @@ export function BunnyList() {
           <h3>add new</h3>
           <button>ⓧ</button>
         </li>
+        {}
       </ul>
       <form className={styles.AddBunny}>
         <input
