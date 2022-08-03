@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import {
   useFamilies,
   useFamilyActions,
-} from '../../state/hooks/fuzzyBunny.js';
+} from '../../state/hooks/fuzzybunny.js';
 import { InputControl } from '../Forms/FormControls.jsx';
 import styles from './FamilyList.css';
 
