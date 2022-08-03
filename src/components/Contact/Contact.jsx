@@ -49,7 +49,6 @@ export default function Contact() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(inquiryForm);
     //some more stuff to go here when its built out
   }
 

@@ -7,7 +7,6 @@ export default function PokemonList({ pokedex, onLoadNext }) {
   const { ref, inView } = useInView();
 
   useEffect(() => {
-    console.log('inView', inView);
     if (!inView) return;
     onLoadNext();
   }, [inView]);

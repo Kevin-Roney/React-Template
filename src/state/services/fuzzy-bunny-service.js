@@ -10,7 +10,6 @@ export async function getFamiliesWithBunnies() {
         family_id
     )
   `);
-  console.log(response);
   return response;
 }
 
