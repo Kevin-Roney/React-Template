@@ -56,6 +56,7 @@ export function useProfile() {
       const { data, error } = await upsertProfile({
         ...profile,
         avatar: url,
+        id: user.id,
       });
 
       if (error) {

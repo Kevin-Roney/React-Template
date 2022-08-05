@@ -44,7 +44,7 @@ export async function getProfile() {
   const user = getUser();
 
   return await client
-    .from('profiles')
+    .from('profile1')
     .select()
     .eq('id', user.id)
     .single();
@@ -52,7 +52,7 @@ export async function getProfile() {
 
 export async function upsertProfile(profile) {
   const response = await client
-    .from('profiles')
+    .from('profile1')
     .upsert(profile)
     .eq('id', profile.id)
     .single();

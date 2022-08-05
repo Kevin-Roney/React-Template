@@ -8,6 +8,8 @@ import FuzzyBunny from './FuzzyBunny/FuzzyBunny.jsx';
 import Families from './FuzzyBunny/Families.jsx';
 import Bunnies from './FuzzyBunny/Bunnies.jsx';
 import ProtectedRoutes from './UserAuth/ProtectRoutes.jsx';
+import Profile from './UserAuth/Profile.jsx';
+
 
 export default function Routes() {
   return (
@@ -16,15 +18,14 @@ export default function Routes() {
       <Route element={<Layout />}>
         <Route element={<ProtectedRoutes />}>
           <Route index element={<Home />} />
-          <Route path="pokedex" element={<Pokedex />} />
-          <Route path="fuzzy-bunny" element={<FuzzyBunny />}>
+          <Route path="pokemonapiagainforsomereason" element={<Pokedex />} />
+          <Route path="fuzzybunnies" element={<FuzzyBunny />}>
             <Route index element={<Families />} />
             <Route path="bunnies" element={<Bunnies />} />
           </Route>
+          <Route path="profile" element={<Profile />} />
         </Route>
-
         <Route path="contact" element={<Contact />} />
-
         <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </RRoutes>
