@@ -1,5 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
-import { FuzzyBunnyContext } from '../context/FuzzyBunnyContext.jsx';
+import { useContext, useEffect, useMemo, useState } from 'react';
+import {
+  FuzzyBunnyStateContext,
+  FuzzyBunnyActionContext,
+} from '../context/FuzzyBunnyContext.jsx';
 import {
   getFamiliesWithBunnies,
   removeFamily,
@@ -8,9 +11,23 @@ import {
 } from '../services/fuzzy-bunny-service.js';
 import { showSuccess, showError } from '../services/toaster.js';
 
+export function useSimpleFamilies() {
+  const [response, setResponse] = useState(null);
+  useEffect(() => {
+    const fetch = async () => {
+      const response = await getFamiliesWithBunnies();
+      setResponse(response);
+    };
+    fetch();
+  }, []);
+
+  return response;
+}
+
 export function useFamilies() {
   const [error, setError] = useState(null);
-  const { families, familyDispatch } = useContext(FuzzyBunnyContext);
+  const { families } = useContext(FuzzyBunnyStateContext);
+  const { familiesDispatch } = useContext(FuzzyBunnyActionContext);
 
   useEffect(() => {
     if (families) return;
@@ -24,7 +41,7 @@ export function useFamilies() {
         setError(error);
       }
       if (data) {
-        familyDispatch({ type: 'load', payload: data });
+        familiesDispatch({ type: 'load', payload: data });
       }
     };
 
@@ -53,27 +70,27 @@ function createDispatchActions(dispatch) {
 }
 
 export function useFamilyActions() {
-  const { familyDispatch } = useContext(FuzzyBunnyContext);
+  const { familiesDispatch } = useContext(FuzzyBunnyActionContext);
 
-  const createAction = createDispatchActions(familyDispatch);
+  const createAction = createDispatchActions(familiesDispatch);
 
   const add = createAction({
     service: addFamily,
     type: 'add',
-    success: (data) => `Added ${data.name}`,
+    success: (data) => `Added new family "${data.name}"`,
   });
 
   const remove = createAction({
     service: removeFamily,
     type: 'remove',
-    success: (data) => `Removed ${data.name}`,
+    success: (data) => `Removed family "${data.name}"`,
   });
 
   const update = createAction({
     service: updateFamily,
     type: 'update',
-    success: (data) => `Updated ${data.name}`,
+    success: (data) => `Updated family "${data.name}"`,
   });
 
-  return { add, remove, update };
+  return useMemo(() => ({ add, remove, update }), [familiesDispatch]);
 }

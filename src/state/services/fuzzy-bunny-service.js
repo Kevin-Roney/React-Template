@@ -1,43 +1,33 @@
-import { client } from './client.js';
+import client from './supabase-client.js';
 
 export async function getFamiliesWithBunnies() {
-  const response = await client.from('loving_families').select(`
+  return await client.from('loving_families').select(`
     id,
-    name,
-    fuzzy_bunnies(
-        id,
-        name,
-        family_id
+    name
     )
   `);
-  return response;
 }
 
 export async function removeFamily(id) {
-  const response = await client
+  return await client
     .from('loving_families')
     .delete()
     .eq('id', id)
     .single();
-
-  return response;
 }
 
 export async function addFamily(family) {
-  const response = await client
-    .from('loving_families')
-    .insert(family)
-    .single();
-
-  return response;
+  return await client.from('loving_families').insert(family).single();
 }
 
-export async function updateFamily(family) {
-  const response = await client
+export async function updateFamily(id, familyUpdate) {
+  return await client
     .from('loving_families')
-    .update(family)
-    .eq('id', family.id)
+    .update(familyUpdate)
+    .eq('id', id)
     .single();
+}
 
-  return response;
+export async function addBunny(bunny) {
+  return await client.from('fuzzy_bunnies').insert(bunny).single();
 }
