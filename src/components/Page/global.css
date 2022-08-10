@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --header-color: #f9dc5c;
+  --body-color: #FFE4F3;
+  --secondary-color: #BBC7CE;
+  --hover-color: #F68E5F;
+  --font-color: #143642;
+  --font: 'Cormorant SC', serif;
+}
+
+body {
+  height: 100vh;
+  background-color: var(--body-color);
+  color: var(--font-color);
+  font-family: var(--font);
+}
+
+
